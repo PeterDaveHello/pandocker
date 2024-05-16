@@ -69,6 +69,14 @@ stretch: stretch/Dockerfile
 	    --build-arg PANDOC_CROSSREF_VERSION=$(CROSSREF_VERSION) \
 	    --tag $(NAME):$@-$(TAG) --file $^ .
 
+.PHONY: extra
+extra: Dockerfile
+	docker build --tag $(NAME):$@-$(TAG) --file $^ . --target extra
+
+.PHONY: full
+full: Dockerfile
+	docker build --tag $(NAME):$@-$(TAG) --file $^ . --target full
+
 .PHONY: ubuntu
 ubuntu: ubuntu/Dockerfile #: Extra variant based on Ubuntu
 	docker build --tag $(NAME):$@-$(TAG) --file $^ .

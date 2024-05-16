@@ -1,11 +1,7 @@
-# A simple Pandoc machine for pandoc with filters, fonts and the latex bazaar
 #
-# Based on :
-#    https://github.com/jagregory/pandoc-docker/blob/master/Dockerfile
-#    https://github.com/geometalab/docker-pandoc/blob/develop/Dockerfile
-#    https://github.com/vpetersson/docker-pandoc/blob/master/Dockerfile
-
-FROM pandoc/extra:3.2-ubuntu
+# STAGE 1: extra variant
+#
+FROM pandoc/extra:3.2-ubuntu as extra
 
 # Set the env variables to non-interactive
 ENV DEBIAN_FRONTEND noninteractive
@@ -148,6 +144,61 @@ RUN wget ${EASY_REPO}/${EASY_VERSION}/html/uikit.html -O ${TEMPLATES_DIR}/uikit.
 
 ##
 ## E N D
+##
+VOLUME /pandoc
+WORKDIR /pandoc
+
+ENTRYPOINT ["pandoc"]
+
+#
+# STAGE 2: full variant
+#
+FROM extra as full
+
+# Set the env variables to non-interactive
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_PRIORITY critical
+ENV DEBCONF_NOWARNINGS yes
+
+#
+# Debian
+#
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN set -x && \
+    apt-get -qq update && \
+    apt-get -qy install --no-install-recommends \
+        #
+        texlive-lang-other \
+        # hindi fonts
+        fonts-deva \
+        # persian fonts
+        texlive-lang-arabic \
+        fonts-farsiweb \
+        # dia
+        dia \
+        # Noto font families with large Unicode coverage
+        fonts-noto \
+        fonts-noto-cjk \
+        fonts-noto-cjk-extra \
+        fonts-noto-color-emoji \
+        fonts-noto-core \
+        fonts-noto-extra \
+        fonts-noto-mono \
+    # clean up
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /etc/apt/apt.conf.d/01proxy
+
+##
+## L A T E X
+##
+ADD packages.full.txt ./
+# The TexLive user mode database already set up; no need to run `tlmgr init-tree`
+RUN tlmgr install `echo $(grep -v '^#' packages.full.txt )` && \
+    # update the font map
+    updmap-sys
+
+##
+## E N T R Y P O I N T
 ##
 VOLUME /pandoc
 WORKDIR /pandoc
