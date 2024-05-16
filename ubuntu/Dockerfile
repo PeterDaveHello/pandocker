@@ -97,8 +97,11 @@ RUN wget https://github.com/hakimel/reveal.js/archive/${REVEALJS_VERSION}.tar.gz
 ##
 
 # Python filters
+# The option `--break-system-packages` sounds bad but this is not
+# really a problem here because we are not using Python debian packages
+# anyway.
 ADD requirements.txt ./
-RUN pip3 --no-cache-dir install -r requirements.txt
+RUN pip3 --no-cache-dir install -r requirements.txt --break-system-packages
 
 # Lua filters
 ARG PANDA_REPO=https://github.com/CDSoft/panda.git
