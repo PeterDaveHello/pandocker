@@ -73,7 +73,7 @@ So far, we provide the 3 templates below:
 * [eisvogel] is designed for lecture notes and exercises with a focus on computer
   science. It works with `pdflatex` and `xelatex`.
 * [easy templates] is a collection of HTML templates
-* [letter] is for writing letters in markdown. Works only with `xelatex`
+
 
 You can use them simply by adding `--template=xxx` to your compilation
 lines:
@@ -86,8 +86,6 @@ Each template has specific variables that you can use to adapt the document.
 Please go the project page of each template for more details.
 
 [eisvogel]: https://github.com/Wandmalfarbe/pandoc-latex-template
-[leaflet]: https://gitlab.com/daamien/pandoc-leaflet-template
-[letter]: https://github.com/aaronwolen/pandoc-letter
 [easy templates]: https://github.com/ryangrose/easy-pandoc-templates
 
 ## Filters
@@ -109,7 +107,6 @@ filters below:
 * [pandoc-latex-margin] : Resize the margins of your PDF documents
 * [pandoc-latex-newpage] : Convert horizontal rule to new page in LaTeX
 * [pandoc-mustache] : basic variables substitution
-* [pandoc-minted] : advanced syntax highlighting
 * [pandoc-crossref] : support for cross-referencing sections, figures, and more
 * [pandoc-run-postgres] : Execute SQL queries inside a markdown document
 * [pandoc-jinja] : Render pandoc metadata inside the document itself
@@ -136,7 +133,7 @@ and [pandoc-mustache] filters.
 [pandoc-latex-margin]: https://github.com/chdemko/pandoc-latex-margin
 [pandoc-latex-newpage]: https://github.com/chdemko/pandoc-latex-newpage
 [pandoc-mustache]: https://github.com/michaelstepner/pandoc-mustache
-[pandoc-minted]: https://github.com/nick-ulle/pandoc-minted
+
 [pandoc-crossref]: https://github.com/lierdakil/pandoc-crossref
 [pandoc-run-postgres]: https://github.com/daamien/pandoc-run-postgres
 [pandoc-jinja]: https://github.com/daamien/pandoc-jinja
