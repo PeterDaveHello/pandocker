@@ -130,6 +130,11 @@ RUN tlmgr init-usertree && \
 # Templates are installed in '/.pandoc'.
 ARG TEMPLATES_DIR=/.pandoc/templates
 
+# Starting with 24.04, there's a user named `ubuntu` with id=1000
+# If docker is run with the `--user 1000` option and $HOME for pandoc
+# will be `/home/ubuntu`
+RUN ln -s /.pandoc /home/ubuntu/.pandoc
+
 # Easy templates
 ARG EASY_REPO=https://raw.githubusercontent.com/ryangrose/easy-pandoc-templates/
 ARG EASY_VERSION=9a884190fe19782f4434851053947173f8cec3d2
