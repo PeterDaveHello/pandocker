@@ -1,7 +1,7 @@
 # https://github.com/daamien/pandoc-cover/releases
 pandoc-cover==0.2.1
 # https://github.com/chdemko/pandoc-codeblock-include/releases
-# pandoc-codeblock-include==0.1
+pandoc-codeblock-include==1.0.1.3
 # https://github.com/DCsunset/pandoc-include/releases/latest
 pandoc-include==1.2
 # https://github.com/daamien/pandoc-jinja/releases
