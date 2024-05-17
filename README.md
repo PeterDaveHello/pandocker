@@ -152,24 +152,19 @@ The full variant includes
 
 ## Supported Tags : Branch + Variant + Parent
 
-The image is available in multiple versions named as follows:
+The image is available in 4 versions named as follows:
 
-`branch[-parent[-variant]]`
+* `latest` (default): minimal image containing the most recent changes
+* `stable` : minimal image based on the latest stable release
+* `latest-full` (default): complete image containing the most recent changes
+* `stable-full` : complete image based on the latest stable release
 
-* The __branch__ can be `latest` (default) or `stable` (for production)
-  or the release name (`20.02`)
-* The __parent__ is the base image we are using. Currently only `ubuntu`
-  is supported
-* The __variant__ is either `extra` (330MB) or `full` (810 MB)
+You can also the release names for instance
 
-The supported tags are :
+`docker pull dalibo/pandocker:24.05`
 
-* `latest`, `latest-ubuntu`, `latest-ubuntu-extra` (default)
-* `latest-ubuntu-full`
-* `stable`, `stable-ubuntu`, `stable-ubuntu-extra`
-* `stable-ubuntu-full`
-
-Other tags are not supported and should be used with care.
+the previous versions add more complex tags such as `latest-ubuntu-extra` 
+or `stable-buster`. They are not supported anymore.
 
 ## Build it
 
